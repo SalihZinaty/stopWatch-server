@@ -64,7 +64,11 @@ app.post('/stopWatch', (req, res) => {
 
 // show the laps 
 app.get('/showLap', (req, res) => {
-    res.send(sessions[req.sessionID]);
+    let watchLap = {};
+    for(let watch in sessions[req.sessionID]){
+        watchLap[watch] = sessions[req.sessionID][watch].stop();
+    }
+    res.send(watchLap);
 })
 
 

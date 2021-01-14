@@ -19,7 +19,7 @@ class StopWatch {
     stop = () => {
         this.startFlag = false;
         if (!this.stopFlag) {
-            this.stop = true;
+            this.stopFlag = true;
             let elapsedTime = Math.floor(Date.now() - this.startTime); // calculating the elapsed time
             let formatted = new Date(elapsedTime).toISOString().substr(11,8); // send back formatted time : hh:mm:ss
             return formatted;
