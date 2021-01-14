@@ -20,7 +20,12 @@ const StopWatch = require('./stopwatch');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({ secret: 'start secret' }));
+app.use(session({
+    secret: 'start secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}));
 app.use(cors());
 const sessions = {};
 //this API is used to add to the lap new stop watches
@@ -53,7 +58,7 @@ app.get('/startWatch', (req, res) => {
 })
 
 // stop the selected watch
-app.get('/',(req,res) => {
+app.get('/', (req, res) => {
     res.send('welcome to stop-watch server please add a stop watch')
 })
 app.get('/stopWatch', (req, res) => {
@@ -69,7 +74,7 @@ app.get('/stopWatch', (req, res) => {
 // show the laps 
 app.get('/showLap', (req, res) => {
     let watchLap = {};
-    for(let watch in sessions[req.sessionID]){
+    for (let watch in sessions[req.sessionID]) {
         watchLap[watch] = sessions[req.sessionID][watch].stop();
     }
     res.send(watchLap);
