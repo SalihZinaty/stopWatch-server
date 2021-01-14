@@ -22,8 +22,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({
     secret: 'start secret',
-    resave: false,
-    saveUninitialized: true,
     cookie: { secure: true }
 }));
 app.use(cors());
@@ -41,7 +39,7 @@ app.get('/addWatch', (req, res) => {
             ...lap
         }
         console.log(sessions[req.sessionID]);
-        res.send(`watch ${watchNum} was added to the lap`);
+        res.send(`watch ${watchNum} was added to the lap with session: ${req.sessionID}`);
     }
 })
 
