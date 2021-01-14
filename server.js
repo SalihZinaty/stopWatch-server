@@ -21,8 +21,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({
-    secret: 'start secret',
-    cookie: { secure: true }
+    secret: 'start secret'
 }));
 app.use(cors());
 const sessions = {};
