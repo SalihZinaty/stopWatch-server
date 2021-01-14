@@ -52,6 +52,9 @@ app.post('/startWatch', (req, res) => {
 })
 
 // stop the selected watch
+app.get('/',(req,res) => {
+    res.send('welcome to stop-watch server please add a stop watch')
+})
 app.post('/stopWatch', (req, res) => {
     let watchNum = req.query.name;
     if (sessions[req.sessionID] === undefined || (sessions[req.sessionID] && (sessions[req.sessionID][watchNum] === undefined)))
