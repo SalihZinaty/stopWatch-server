@@ -6,12 +6,12 @@ class StopWatch {
     constructor(watchNumber) {
         this.startTime = 0;
         this.watchNumber = watchNumber;
-        this.stopFlag = true;
-        this.startFlag = false;
+        this.stopFlag = true; // this flag meant to not start the same watch twice
+        this.startFlag = false; //this flag meant to not stop the watch twice
     }
     start = () => {
         if (!this.startFlag) {
-            this.startTime = Date.now();
+            this.startTime = Date.now(); // getting the current time and store it in the startTime private param
             this.stopFlag = false;
             this.startFlag = true;
         }
@@ -20,8 +20,8 @@ class StopWatch {
         this.startFlag = false;
         if (!this.stopFlag) {
             this.stop = true;
-            let elapsedTime = Math.floor(Date.now() - this.startTime);
-            let formatted = new Date(elapsedTime).toISOString().substr(11,8);
+            let elapsedTime = Math.floor(Date.now() - this.startTime); // calculating the elapsed time
+            let formatted = new Date(elapsedTime).toISOString().substr(11,8); // send back formatted time : hh:mm:ss
             return formatted;
 
         } else {
