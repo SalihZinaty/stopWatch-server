@@ -14,13 +14,14 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const StopWatch = require('./stopwatch');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({ secret: 'start secret' }));
-
+app.use(cors());
 const sessions = {};
 //this API is used to add to the lap new stop watches
 app.post('/addWatch', (req, res) => {
