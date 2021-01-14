@@ -16,10 +16,10 @@ class StopWatch {
             this.startFlag = true;
         }
     }
-    stop = () => {
+    stop = (showlap) => {
         this.startFlag = false;
         if (!this.stopFlag) {
-            this.stopFlag = true;
+           showlap !== 'showlap' ? this.stopFlag = true : null;
             let elapsedTime = Math.floor(Date.now() - this.startTime); // calculating the elapsed time
             let formatted = new Date(elapsedTime).toISOString().substr(11,8); // send back formatted time : hh:mm:ss
             return formatted;

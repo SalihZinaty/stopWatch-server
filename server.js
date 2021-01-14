@@ -26,7 +26,7 @@ app.use(session({
 app.use(cors());
 const sessions = {};
 //this API is used to add to the lap new stop watches
-app.get('/addWatch', (req, res) => {
+app.get('/addwatch', (req, res) => {
     let watchNum = req.query.name;
     if (sessions[req.sessionID] && (sessions[req.sessionID][watchNum] !== undefined))
         res.send(`This watch is already exists`)
@@ -43,7 +43,7 @@ app.get('/addWatch', (req, res) => {
 })
 
 // starting a selected stop watch
-app.get('/startWatch', (req, res) => {
+app.get('/startwatch', (req, res) => {
     let watchNum = req.query.name;
     if (sessions[req.sessionID] === undefined || (sessions[req.sessionID] && (sessions[req.sessionID][watchNum] === undefined)))
         res.send('the watch does not exist in the lap');
@@ -58,7 +58,7 @@ app.get('/startWatch', (req, res) => {
 app.get('/', (req, res) => {
     res.send('welcome to stop-watch server please add a stop watch')
 })
-app.get('/stopWatch', (req, res) => {
+app.get('/stopwatch', (req, res) => {
     let watchNum = req.query.name;
     if (sessions[req.sessionID] === undefined || (sessions[req.sessionID] && (sessions[req.sessionID][watchNum] === undefined)))
         res.send('the watch does not exist in the lap');
@@ -69,10 +69,10 @@ app.get('/stopWatch', (req, res) => {
 })
 
 // show the laps 
-app.get('/showLap', (req, res) => {
+app.get('/showlap', (req, res) => {
     let watchLap = {};
     for (let watch in sessions[req.sessionID]) {
-        watchLap[watch] = sessions[req.sessionID][watch].stop();
+        watchLap[watch] = sessions[req.sessionID][watch].stop('showlap');
     }
     res.send(watchLap);
 })
